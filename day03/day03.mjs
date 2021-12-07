@@ -1,4 +1,6 @@
 import utils from "../utils.mjs";
+import calculateCO2ScrubberRating from "./calculateCO2ScrubberRating.mjs";
+import calculateOxigenGeneratorRatio from "./calculateOxigenGeneratorRatio.mjs";
 import calculateGamaRate from "./calculateGamaRate.mjs";
 
 const calculateEpsilonRate = (gamaRate) => {
@@ -15,6 +17,11 @@ const main = () => {
     const epsilonRateBinary = calculateEpsilonRate(gamaRateBinary);
     console.log(parseInt(gamaRateBinary, 2) * parseInt(epsilonRateBinary, 2));
 
+    console.log('Day03-2');
+    const oxygenGeneratorRatingBinary = calculateOxigenGeneratorRatio(input);
+    const CO2ScrubberRatingBinary = calculateCO2ScrubberRating(input);
+
+    console.log(parseInt(oxygenGeneratorRatingBinary, 2) * parseInt(CO2ScrubberRatingBinary, 2));
 };
 
-main();
+export default main;

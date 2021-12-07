@@ -1,6 +1,5 @@
 const calculateGamaRate = (input) => {
     if (!input || input.length === 0) return '0'
-    console.log(input.length)
     return input.reduce((prev, current) => {
         if (typeof current !== 'string' || current.length === 0 || !(current.match(/^[0-1]+$/))) return prev;
         for (let i = 0; i < current.length; i++) {
