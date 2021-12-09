@@ -44,3 +44,6 @@ Not a difficult problem. There must be a better way to handle the commands than 
     }
     return [horizontal, depth];
 ```
+
+# Day3
+I am sure that there are cleaner solutions. There is plenty of  duplication between `calculateOxigenGeneratorRatio` and `calculateCO2ScrubberRating` but I don't want to invest the time needed to erase it.
