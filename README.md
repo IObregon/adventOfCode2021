@@ -47,3 +47,7 @@ Not a difficult problem. There must be a better way to handle the commands than 
 
 # Day3
 I am sure that there are cleaner solutions. There is plenty of  duplication between `calculateOxigenGeneratorRatio` and `calculateCO2ScrubberRating` but I don't want to invest the time needed to erase it.
+
+# Day4
+The long weekend is over and there is a finite amount of time I can throw to this. I am sure that this one would be easier with an Object Oriented approach but I was to invested when I realized that.
+The solution is not optimal but it works.
