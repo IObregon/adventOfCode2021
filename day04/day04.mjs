@@ -45,6 +45,43 @@ const playBingo = (boards, bingoNumbers) => {
     }
 }
 
+const deleteAlreadyWonBoard = (boards, board) => {
+    const index = boards.findIndex((b) => b == board);
+    boards.splice(index, 1);
+}
+const play = (boards, number) => {
+    const result = [];
+    let won = false;
+    for (let board of boards) {
+        result.push(board);
+        for (let row of board) {
+            const pos = row.findIndex((num) => num === number);
+            if (pos >= 0) {
+                row[pos] = 'X';
+                if (checkIfRowWin(row) || checkIfColumnWin(board, pos)) {
+                    if (boards.length > 1) {
+                        deleteAlreadyWonBoard(result, board)
+                    } else {
+                        won = true
+                    }
+                }
+                break;
+            }
+        }
+    }
+    return [result, won];
+}
+
+const playBingoToLose = (boards, bingoNumbers) => {
+    let won = false;
+    for (const number of bingoNumbers.split(",")) {
+        [boards, won] = play(boards, number)
+        if (boards.length === 1 && won) {
+            return [boards[0], number]
+        }
+    }
+}
+
 
 const main = () => {
     const input = utils.readInput(import.meta.url);
@@ -52,8 +89,13 @@ const main = () => {
     console.log('Day04-1');
     const [bingoNumbers] = input;
     const boards = convertInputToBoards(input.slice(2));
-    const [winningBoard, lastNumber ] = playBingo(boards, bingoNumbers);
+    const [winningBoard, lastNumber] = playBingo(JSON.parse(JSON.stringify(boards)), bingoNumbers);
     console.log(calculateSumOfRemainings(winningBoard) * lastNumber);
+
+    console.log('Day04-2');
+
+    const [lossingBoard, lastNumberLossing] = playBingoToLose(JSON.parse(JSON.stringify(boards)), bingoNumbers);
+    console.log(calculateSumOfRemainings(lossingBoard) * lastNumberLossing);
 };
 
 main();
